@@ -1,4 +1,6 @@
 package Hike;
 
-public class Output {
+public interface Output {
+
+    public void displaySolution(int totalTime);
 }
