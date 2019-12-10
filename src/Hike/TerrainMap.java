@@ -23,7 +23,13 @@ public class TerrainMap {
     }
 
     public char getMapPosition(int x, int y){
-        return map[x][y];
+        // if the array is out of bounds it should break the code
+        try {
+            return map[x][y];
+        } catch(IndexOutOfBoundsException e){
+            System.exit(420);
+            return 'x';
+        }
     }
 
     public int getStartingXPoint() {
