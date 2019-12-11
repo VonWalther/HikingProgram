@@ -1,3 +1,10 @@
+/*
+        ////********************************\\
+        ////** Written by Ashlyn Kwasnica **\\
+        ////********************************\\
+        ////********************************\\
+ */
+
 package Hike;
 
 public class TerrainMap {
@@ -15,8 +22,12 @@ public class TerrainMap {
         this.map = map;
     }
 
-    public char getMapPosition(int x, int y){
-        return map[x][y];
+    public char getMapPosition(int x, int y) throws IndexOutOfBoundsException{
+        try {
+            return( map[x][y]);
+        } catch(IndexOutOfBoundsException e) {
+            throw new IndexOutOfBoundsException("Request outside of the map");
+        }
     }
 
     public int getStartingXPoint() {
