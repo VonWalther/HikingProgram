@@ -21,8 +21,8 @@ public class Main {//extends Application {
 */
 
     public static void main(String[] args) {
-        TimeTable blah = new TimeTable();
-        System.out.print(blah.getTime('h'));
+    //    TimeTable blah = new TimeTable();
+    //    System.out.print(blah.getTime('h'));
         //launch(args);
     }
 }

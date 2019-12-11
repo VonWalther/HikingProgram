@@ -3,7 +3,7 @@ package Hike;
 import java.util.PriorityQueue;
 
 //Created by Carl F. Walther
-//For the Hikeing Problem 12/11/19
+//For the Hiking Problem 12/11/19
 public class PathSolver implements TimeTable{
 
     //Data Members
