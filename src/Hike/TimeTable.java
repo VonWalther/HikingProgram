@@ -1,8 +1,10 @@
 package Hike;
 
 import java.util.HashMap;
+import java.util.InputMismatchException;
 
 public interface TimeTable {
+
 
     static HashMap<Character , Integer> getTimeMap() {
 
@@ -17,14 +19,15 @@ public interface TimeTable {
 
     }
 
-     static int getTime(char terrain) {
+
+    static int getTime(char terrain) throws InputMismatchException {
 
         HashMap<Character , Integer> timeMap = getTimeMap();
 
         if (timeMap.containsKey(Character.toUpperCase(terrain))) {
-            return (int) timeMap.get(Character.toUpperCase(terrain));
+            return timeMap.get(Character.toUpperCase(terrain));
         } else {
-            return 100;
+            throw new InputMismatchException("Input Was Not A Valid Terrain Type");
         }
 
     }
