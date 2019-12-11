@@ -22,7 +22,7 @@ public class TerrainMap {
         this.map = map;
     }
 
-    public char getMapPosition(int x, int y) throws IndexOutOfBoundsException{
+    public char getMapPosition(int x, int y){
         try {
             return map[x][y];
         } catch(IndexOutOfBoundsException e) {
