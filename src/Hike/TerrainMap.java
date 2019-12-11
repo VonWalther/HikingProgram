@@ -22,13 +22,11 @@ public class TerrainMap {
         this.map = map;
     }
 
-    public char getMapPosition(int x, int y){
-        // if the array is out of bounds it should break the code
+    public char getMapPosition(int x, int y) throws IndexOutOfBoundsException{
         try {
-            return map[x][y];
-        } catch(IndexOutOfBoundsException e){
-            System.exit(420);
-            return 'x';
+            return( map[x][y]);
+        } catch(IndexOutOfBoundsException e) {
+            throw new IndexOutOfBoundsException("Request outside of the Map");
         }
     }
 
