@@ -23,10 +23,11 @@ public class TerrainMap {
     }
 
     public char getMapPosition(int x, int y) {
-        try {
-            return map[x][y];
-        } catch(IndexOutOfBoundsException e) {
+        if(x > map.length || y > map.length){
             throw new IndexOutOfBoundsException("Request outside of the map");
+        }
+        else{
+            return map[x][y];
         }
     }
 
