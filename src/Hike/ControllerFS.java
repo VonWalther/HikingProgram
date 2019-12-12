@@ -24,10 +24,14 @@ public class ControllerFS {
         Parent root = FXMLLoader.load(getClass().getResource("mapDisplay.fxml"));
         Stage mainStage = new Stage();
         Stage currentStage = (Stage)submit.getScene().getWindow();
-        mainStage.setTitle("Map");
+        mainStage.setTitle(filePath.getText());
         mainStage.setScene(new Scene(root, 300, 275));
+        mainStage.setWidth(600);
+        mainStage.setHeight(400);
+        mainStage.setResizable(false);
         mainStage.show();
-        currentStage.close();
+        currentStage.close(); //TODO: connect filePath to file handler to try and load entered file
     }
 
 }
+
