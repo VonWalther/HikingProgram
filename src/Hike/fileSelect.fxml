@@ -6,7 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="150.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Hike.ControllerFS">
+<AnchorPane maxHeight="100" maxWidth="200" minHeight="100" minWidth="200" prefHeight="100.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Hike.ControllerFS">
    <children>
       <Label layoutX="14.0" layoutY="14.0" text="File Path" />
       <TextField fx:id="filePath" layoutX="14.0" layoutY="31.0" />
