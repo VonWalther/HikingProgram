@@ -12,24 +12,60 @@ public class PathSolver implements TimeTable{
     private int[][] timeMap = new int[5][5];
 
 
-
     //Constructors
     public PathSolver(TerrainMap currentMap){
+        //Load in the current
         this.currentMap = currentMap;
+
+        //Place the starting position as the first node to check (first in priQue).
         this.nextNode = new PriorityQueue<HNode>();
+        HNode firstNode = createFirstNode();
+        nextNode.add(firstNode);
+
+        //Fill Time Map with Sudo-Infinities
+        for(int i = 0; i < timeMap.length; i++){
+            for(int j = 0; j < timeMap[i].length; j++){
+                timeMap[i][j] = 99999;
+            }
+        }
+        int[] sPoint = nextNode.peek().getPosition();
+        timeMap[sPoint[0]][sPoint[1]] = TimeTable.getTime(currentMap.getMapPosition(sPoint[0],sPoint[1]));
+
     }
 
-    public int getFastestTime(){
-
-        return(7);
+    private HNode createFirstNode(){
+        int[] sPoint = {this.currentMap.getStartingXPoint() , this.currentMap.getStartingYPoint()};
+        int sRank = TimeTable.getTime(currentMap.getMapPosition(sPoint[0],sPoint[1]));
+        HNode firstNode = new HNode(sPoint, sRank);
+        return(firstNode);
     }
+
+
+    //Returns the Time Map as a full array for testing purposes.
+    public int[][] getTimeMap(){
+        return (timeMap);
+    }
+
+
+
+    public String getFastestTime(){
+
+        return("" + nextNode.peek().getPosition() + " " + nextNode.peek().getRank());
+    }
+
+
+
+    //*******************************NODE CLASS*********************************************
+    //A node that holds the position and rank of the next node to be used.
+
     //To hold the list of evaluated positions in the map and rank on shortest time.
     class HNode implements Comparable<HNode>{
         private int[] position = new int[2];
         private int rank;
 
+
         //Used to creat a new node for the priority code.
-        public void Node(int[] position, int rank){
+        public HNode(int[] position, int rank){
             this.position = position;
             this.rank = rank;
         }
@@ -45,6 +81,8 @@ public class PathSolver implements TimeTable{
         public void setRank(int rank) {
             this.rank = rank;
         }
+
+
 
         //If Priority Ques is in wrong order fix here.
         @Override
