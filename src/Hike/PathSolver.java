@@ -9,7 +9,7 @@ public class PathSolver implements TimeTable{
     //Data Members
     private PriorityQueue<HNode> nextNode;
     private TerrainMap currentMap;
-    private int[][] timeMap = new int[5][5];
+    private int[][] timeMap = new int[5][5];  //Change if map size changes.
 
 
     //Constructors
@@ -25,12 +25,19 @@ public class PathSolver implements TimeTable{
         //Fill Time Map with Sudo-Infinities
         for(int i = 0; i < timeMap.length; i++){
             for(int j = 0; j < timeMap[i].length; j++){
-                timeMap[i][j] = 99999;
+                timeMap[i][j] = defineInfinty();
             }
         }
         int[] sPoint = nextNode.peek().getPosition();
         timeMap[sPoint[0]][sPoint[1]] = TimeTable.getTime(currentMap.getMapPosition(sPoint[0],sPoint[1]));
 
+    }
+
+    //This retunrs the largest possible time that a cell could hold.
+    private int defineInfinty(){
+        final int L_TIME = 20; //Need function to give largest value.
+        int inf = timeMap.length * timeMap[0].length * L_TIME + 1;
+        return(inf);
     }
 
     private HNode createFirstNode(){
@@ -46,6 +53,10 @@ public class PathSolver implements TimeTable{
         return (timeMap);
     }
 
+    //Update all the cells around the current cell on timeMap
+    private void updateTimeMap(HNode currentNode){
+        //For Monday
+    }
 
 
     public String getFastestTime(){
