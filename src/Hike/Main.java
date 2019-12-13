@@ -15,8 +15,10 @@ public class Main {//extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("fileSelect.fxml"));
         primaryStage.setTitle("Enter a .dat file");
         primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setWidth(275);
+        primaryStage.setHeight(200);
+        primaryStage.setResizable(false);
         primaryStage.show();
-
     }
 */
 
