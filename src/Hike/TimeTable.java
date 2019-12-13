@@ -3,26 +3,35 @@ package Hike;
 import java.util.HashMap;
 import java.util.InputMismatchException;
 
-public interface TimeTable {
+public class TimeTable {
 
-
-    static HashMap<Character , Integer> getTimeMap() {
-
-        HashMap<Character , Integer> timeMap = new HashMap<>();
-
+    HashMap<Character , Integer> timeMap;
+    
+    public TimeTable() {
+        
+        new HashMap<>(); HashMap<Character , Integer> timeMap =new HashMap<>();
+        
         timeMap.put('T' , 3);
         timeMap.put('W' , 8);
         timeMap.put('O' , 12);
         timeMap.put('S' , 20);
 
-        return timeMap;
-
+        this.timeMap = timeMap;
+        
+    }
+    
+    public TimeTable(HashMap<Character , Integer> newHashMap) {
+        this.timeMap = newHashMap;
     }
 
 
-    static int getTime(char terrain) throws InputMismatchException {
+    public HashMap<Character, Integer> getTimeMap() {
+        return timeMap;
+    }
 
-        HashMap<Character , Integer> timeMap = getTimeMap();
+    int getTime(char terrain) throws InputMismatchException {
+
+        getTimeMap();
 
         if (timeMap.containsKey(Character.toUpperCase(terrain))) {
             return timeMap.get(Character.toUpperCase(terrain));
