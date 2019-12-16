@@ -4,13 +4,13 @@ import java.util.PriorityQueue;
 
 //Created by Carl F. Walther
 //For the Hiking Problem 12/11/19
-public class PathSolver implements TimeTable{
+public class PathSolver {
 
     //Data Members
     private PriorityQueue<HNode> nextNode;
     private TerrainMap currentMap;
     private int[][] timeMap = new int[5][5];  //Change if map size changes.
-
+    private TimeTable timeTable = new TimeTable();
 
     //Constructors
     public PathSolver(TerrainMap currentMap){
@@ -29,7 +29,7 @@ public class PathSolver implements TimeTable{
             }
         }
         int[] sPoint = nextNode.peek().getPosition();
-        timeMap[sPoint[0]][sPoint[1]] = TimeTable.getTime(currentMap.getMapPosition(sPoint[0],sPoint[1]));
+        timeMap[sPoint[0]][sPoint[1]] = timeTable.getTime(currentMap.getMapPosition(sPoint[0],sPoint[1]));
 
     }
 
@@ -42,7 +42,7 @@ public class PathSolver implements TimeTable{
 
     private HNode createFirstNode(){
         int[] sPoint = {this.currentMap.getStartingXPoint() , this.currentMap.getStartingYPoint()};
-        int sRank = TimeTable.getTime(currentMap.getMapPosition(sPoint[0],sPoint[1]));
+        int sRank = timeTable.getTime(currentMap.getMapPosition(sPoint[0],sPoint[1]));
         HNode firstNode = new HNode(sPoint, sRank);
         return(firstNode);
     }
