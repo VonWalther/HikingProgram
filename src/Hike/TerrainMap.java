@@ -30,6 +30,11 @@ public class TerrainMap {
             return map[x][y];
         }
     }
+        
+    public int getMapSize(){
+        int x = map.length;
+        return x;
+    }
 
     public int getStartingXPoint() {
         return startX;
