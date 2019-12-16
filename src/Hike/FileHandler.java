@@ -10,7 +10,7 @@ public class FileHandler {
     private String fileType;    //type of file name (determines whether to use fileName or fileURL)
     private int mapNum;    //determines which map to load
     private int numOfLines;    //number of lines in file, to keep track for multimap reading
-    private boolean numOfLinesHasntRun = true;    //tells if counted numOfLines yet
+    private boolean numOfLinesNotRun = true;    //tells if counted numOfLines yet
 
     //Constructor variables
     private Integer startX;
@@ -28,23 +28,21 @@ public class FileHandler {
         Scanner scanner;
 
         try {
-            //creates buffered Reader
-            if (fileType.equals("File")) {    //determines what kind of file name type to use
-                fileReader = new FileReader(fileName);
-                scanner = new Scanner(fileName);
-            } else {
-                fileReader = new FileReader(fileURL);
-                scanner = new Scanner(fileURL);
+            //creates buffered Reader and scanner
+            if (fileType.equals("String")) {    //converts string to file
+                fileName = new File(fileURL);
             }
+            fileReader = new FileReader(fileName);
+            scanner = new Scanner(fileName);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
             //counts total number of lines in file
-            if (numOfLinesHasntRun) {
-                while (scanner.hasNextLong()) {
+            if (numOfLinesNotRun) {
+                while (scanner.hasNextLine()) {
                     numOfLines++;
-                    scanner.next();
+                    System.out.println(scanner.nextLine());
                 }
-                numOfLinesHasntRun = false;   //ensures file is only counted once
+                numOfLinesNotRun = false;   //ensures file is only counted once
             }
 
             //skips to map you want to use
@@ -53,22 +51,22 @@ public class FileHandler {
             }
 
             //coordinate reader
-            line = bufferedReader.readLine();                //isnt reading in new line (think because its not reseting)
+            line = bufferedReader.readLine();
             for (int k = 0; k < 2; k++) {    //loops for start and end coordinates
                 int o = 1 + (k * 6);    //for first substring parameter
                 int p = 4 + (k * 6);    //for second substring parameter
                 temp = line.substring(1, line.length() - 1);    //removes curly brackets
                 vars[k] = temp.substring(o, p);     //format [0,0]
             }
-            startX = Integer.parseInt(vars[0].substring(0, 1));
-            startY = Integer.parseInt(vars[0].substring(2, 3));
-            endX = Integer.parseInt(vars[1].substring(0, 1));
-            endY = Integer.parseInt(vars[1].substring(2, 3));
+            startX = Integer.parseInt(vars[0].substring(0, 1));    //hardcoded assignment
+            startY = Integer.parseInt(vars[0].substring(2, 3));    //hardcoded assignment
+            endX = Integer.parseInt(vars[1].substring(0, 1));    //hardcoded assignment
+            endY = Integer.parseInt(vars[1].substring(2, 3));    //hardcoded assignment
 
             //map Reader
-            for (int x = 0; x < 5; x++) {   //for each line of map ex: [1,1,1,1,1]
+            for (int x = 0; x < 5; x++) {   //for each line/row of map ex: [1,1,1,1,1]
                 line = bufferedReader.readLine();
-                for (int y1 = 0; y1 < 5; y1++) {    //for each char in the line
+                for (int y1 = 0; y1 < 5; y1++) {    //for each char in the line/row
                     int y2 = y1 + 1;    //so it only substrings a single char
                     map[x][y1] = (line.substring(y1, y2)).charAt(0);    //takes a single char in
                 }
@@ -91,12 +89,13 @@ public class FileHandler {
 
     public ArrayList<TerrainMap> createTerrainMaps() {
         ArrayList terrainMaps = new ArrayList<TerrainMap>();
-        mapNum = 0;
 
-        for (int run = 0; run < (numOfLines / 6); run++) {
+        input();
+        terrainMaps.add(new TerrainMap(startX, startY, endX, endY, map));
+
+        for (int run = 0; run < ((numOfLines / 6) - 1); run++) {    //runs for each map in file
             input();
-            TerrainMap terrainMap = new TerrainMap(startX, startY, endX, endY, map);
-            terrainMaps.add(terrainMap);
+            terrainMaps.add(new TerrainMap(startX, startY, endX, endY, map));
             mapNum++;
         }
 
@@ -178,9 +177,7 @@ public class FileHandler {
         return numOfLines;
     }
 
-    public void setNumOfLines(int numOfLines) {
-        this.numOfLines = numOfLines;
-    }
+    //no need for numOfLines setter
 
     //startX
     public Integer getStartX() {
@@ -216,14 +213,5 @@ public class FileHandler {
 
     public void setEndY(Integer endY) {
         this.endY = endY;
-    }
-
-    //numOfLinesHasntRun
-    public boolean getNumOfLinesHasntRun() {
-        return numOfLinesHasntRun;
-    }
-
-    public void setNumOfLinesHasntRun(boolean numOfLinesHasntRun) {
-        this.numOfLinesHasntRun = numOfLinesHasntRun;
     }
 }
