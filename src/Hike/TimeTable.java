@@ -5,9 +5,9 @@ import java.util.InputMismatchException;
 
 public class TimeTable {
 
-    HashMap<Character , Integer> timeMap;
+    static HashMap<Character , Integer> timeMap;
 
-    public TimeTable() {
+     public TimeTable() {
 
         new HashMap<>(); HashMap<Character , Integer> timeMap = new HashMap<>();
 
@@ -26,12 +26,12 @@ public class TimeTable {
     }
 
 
-    public HashMap<Character, Integer> getTimeMap() {
+    public static HashMap<Character, Integer> getTimeMap() {
         return timeMap;
     }
 
-    int getTime(char terrain) throws InputMismatchException {
-
+    public static int getTime(char terrain) throws InputMismatchException {
+        new TimeTable();
         getTimeMap();
 
         if (timeMap.containsKey(Character.toUpperCase(terrain))) {
@@ -42,10 +42,8 @@ public class TimeTable {
 
     }
 
-
-
-    public Integer getLargestKeyValue() {
-
+    public static Integer getLargestKeyValue() {
+        new TimeTable();
         Object[] blah = timeMap.values().toArray();
         return (Integer) blah[0];
 
