@@ -36,9 +36,9 @@
       </GridPane>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
-            <TextField editable="false" layoutX="14.0" layoutY="68.0" />
-            <TextField editable="false" layoutX="226.0" layoutY="68.0" />
-            <TextField editable="false" layoutX="437.0" layoutY="68.0" />
+            <TextField fx:id="startPointBox" editable="false" layoutX="14.0" layoutY="68.0" />
+            <TextField fx:id="endPointBox" editable="false" layoutX="226.0" layoutY="68.0" />
+            <TextField fx:id="bestTimeBox" editable="false" layoutX="437.0" layoutY="68.0" />
             <Label layoutX="52.0" layoutY="51.0" text="Starting Point" />
             <Label layoutX="266.0" layoutY="51.0" text="Ending Point" />
             <Label layoutX="486.0" layoutY="51.0" text="Best Time" />

@@ -9,7 +9,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class ControllerFS {
 
@@ -29,9 +31,27 @@ public class ControllerFS {
         mainStage.setWidth(600);
         mainStage.setHeight(400);
         mainStage.setResizable(false);
-        mainStage.show();
-        currentStage.close(); //TODO: connect filePath to file handler to try and load entered file
+        if(loadSubmittedFile(filePath.getText())){
+            mainStage.show();
+            currentStage.close();
+        }
+        else{
+            currentStage.setTitle("Error opening file");
+        }
+    }
+
+    private boolean loadSubmittedFile(String url){
+        boolean successfulLoad;
+        try {
+            FileHandler in = new FileHandler(new File(url));
+            ArrayList<TerrainMap> maps = in.createTerrainMaps();
+            successfulLoad = true;
+            Controller.setAllMaps(maps);
+        }
+        catch(Exception e){
+            successfulLoad = false;
+        }
+        return successfulLoad;
     }
 
 }
-
