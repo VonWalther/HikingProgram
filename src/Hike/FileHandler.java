@@ -19,6 +19,7 @@ public class FileHandler {
     private Integer endY;
     private char[][] map = new char[5][5];
 
+
     private void input() {
         //fileReader variables (including variables for breaking down code)
         String line;    //hold the read in line
@@ -40,7 +41,7 @@ public class FileHandler {
             if (numOfLinesNotRun) {
                 while (scanner.hasNextLine()) {
                     numOfLines++;
-                    System.out.println(scanner.nextLine());
+                    scanner.nextLine();
                 }
                 numOfLinesNotRun = false;   //ensures file is only counted once
             }

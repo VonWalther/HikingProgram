@@ -7,7 +7,7 @@ import java.util.PriorityQueue;
 public class PathSolver {
 
     //Data Members
-    private PriorityQueue<HNode> nextNode;
+    private PriorityQueue<HNode> nodeQueue;
     private TerrainMap currentMap;
     private int[][] timeMap = new int[5][5];  //Change if map size changes.
     private TimeTable timeTable = new TimeTable();
@@ -18,9 +18,9 @@ public class PathSolver {
         this.currentMap = currentMap;
 
         //Place the starting position as the first node to check (first in priQue).
-        this.nextNode = new PriorityQueue<HNode>();
+        this.nodeQueue = new PriorityQueue<HNode>();
         HNode firstNode = createFirstNode();
-        nextNode.add(firstNode);
+        nodeQueue.add(firstNode);
 
         //Fill Time Map with Sudo-Infinities
         for(int i = 0; i < timeMap.length; i++){
@@ -28,7 +28,7 @@ public class PathSolver {
                 timeMap[i][j] = defineInfinty();
             }
         }
-        int[] sPoint = nextNode.peek().getPosition();
+        int[] sPoint = nodeQueue.peek().getPosition();
         timeMap[sPoint[0]][sPoint[1]] = timeTable.getTime(currentMap.getMapPosition(sPoint[0],sPoint[1]));
 
     }
@@ -55,13 +55,13 @@ public class PathSolver {
 
     //Update all the cells around the current cell on timeMap
     private void updateTimeMap(HNode currentNode){
-        //For Monday
+
     }
 
 
     public String getFastestTime(){
 
-        return("" + nextNode.peek().getPosition() + " " + nextNode.peek().getRank());
+        return("" + nodeQueue.peek().getPosition() + " " + nodeQueue.peek().getRank());
     }
 
 
