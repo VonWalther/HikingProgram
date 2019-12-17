@@ -33,6 +33,28 @@ public class PathSolver {
 
     }
 
+    public String getFastestTime(){
+        HNode currentNode;
+
+        //Some Sort of Loop
+        do {
+            //Pull Next Node to be evaluate.
+            currentNode = nodeQueue.poll();
+            //Create New Nodes on the Priority Queue
+            updateTimeMap(currentNode);
+        }while( checkIfDone(nodeQueue.peek()));
+
+        //Return the time found in the end position.
+        int[] end = {currentMap.getEndingXPoint(),currentMap.getEndingYPoint()};
+        Integer fastestTime = timeMap[end[0]][end[1]];
+        return(fastestTime.toString());
+    }
+
+    private boolean checkIfDone(HNode peek) {
+        //Return true if the time in the end position is larger then the time of the next node.
+        return(false);
+    }
+
     //This retunrs the largest possible time that a cell could hold.
     private int defineInfinty(){
         final int L_TIME = 20; //Need function to give largest value.
@@ -56,13 +78,15 @@ public class PathSolver {
     //Update all the cells around the current cell on timeMap
     private void updateTimeMap(HNode currentNode){
 
+        //evaluateNeighbors(???)
+        //If neighbor is
+          //Larger update time map and create new node
+          //Smaller or Equal or Edge Do Nothing
+
     }
 
 
-    public String getFastestTime(){
 
-        return("" + nodeQueue.peek().getPosition() + " " + nodeQueue.peek().getRank());
-    }
 
 
 
