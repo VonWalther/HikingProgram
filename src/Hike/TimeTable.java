@@ -5,34 +5,39 @@ import java.util.InputMismatchException;
 
 public class TimeTable {
 
-    static HashMap<Character , Integer> timeMap;
+    private HashMap<Character , Integer> timeMap;
+    private int max;
+    private int min;
 
      public TimeTable() {
 
         new HashMap<>(); HashMap<Character , Integer> timeMap = new HashMap<>();
-
+        
         timeMap.put('T' , 3);
         timeMap.put('W' , 8);
         timeMap.put('O' , 12);
         timeMap.put('S' , 20);
 
-
+        this.max = 20;
+        this.min = 3;
         this.timeMap = timeMap;
 
     }
 
-    public TimeTable(HashMap<Character , Integer> newHashMap) {
+    public TimeTable(HashMap<Character , Integer> newHashMap , int newMax , int newMin) {
+
+        this.max = newMax;
+        this.min = newMin;
         this.timeMap = newHashMap;
+
     }
 
 
-    public static HashMap<Character, Integer> getTimeMap() {
+    public  HashMap<Character, Integer> getTimeMap() {
         return timeMap;
     }
 
-    public static int getTime(char terrain) throws InputMismatchException {
-        new TimeTable();
-        getTimeMap();
+    public int getTime(char terrain) throws InputMismatchException {
 
         if (timeMap.containsKey(Character.toUpperCase(terrain))) {
             return timeMap.get(Character.toUpperCase(terrain));
@@ -42,11 +47,18 @@ public class TimeTable {
 
     }
 
-    public static Integer getLargestKeyValue() {
-        new TimeTable();
-        Object[] blah = timeMap.values().toArray();
-        return (Integer) blah[0];
+    public int getLargestKeyValue() {
+
+        return max;
+        
+    }
+
+
+    public int getSmallestKeyValue() {
+
+        return min;
 
     }
+
 
 }
