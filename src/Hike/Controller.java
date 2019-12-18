@@ -94,20 +94,27 @@ public class Controller {
 
         for (int x = 0; x < array.length; x++){
             for (int y = 0; y < array[x].length; y++){
-                Label label = new Label(Character.toString(array[x][y]));
+                Label label;
                 StackPane sp = new StackPane();
                 switch (array[x][y]){
                     case 'T':
                         sp.setBackground(new Background(new BackgroundFill(Color.LIGHTGREEN, CornerRadii.EMPTY, Insets.EMPTY)));
+                        label = new Label("Trail");
                         break;
                     case 'W':
                         sp.setBackground(new Background(new BackgroundFill(Color.CYAN, CornerRadii.EMPTY, Insets.EMPTY)));
+                        label = new Label("Wooded");
                         break;
                     case 'O':
                         sp.setBackground(new Background(new BackgroundFill(Color.YELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
+                        label = new Label("Overgrown");
                         break;
                     case 'S':
                         sp.setBackground(new Background(new BackgroundFill(Color.LIGHTCORAL, CornerRadii.EMPTY, Insets.EMPTY)));
+                        label = new Label("Steep");
+                        break;
+                    default:
+                        label = new Label("N/A");
                         break;
                 }
                 sp.getChildren().add(label);
@@ -135,20 +142,27 @@ public class Controller {
 
         for (int x = 0; x < array.length; x++){
             for (int y = 0; y < array[x].length; y++){
-                Label label = new Label(Character.toString(array[x][y]));
+                Label label;
                 StackPane sp = new StackPane();
                 switch (array[x][y]){
                     case 'T':
                         sp.setBackground(new Background(new BackgroundFill(Color.LIGHTGREEN, CornerRadii.EMPTY, Insets.EMPTY)));
+                        label = new Label("Trail");
                         break;
                     case 'W':
                         sp.setBackground(new Background(new BackgroundFill(Color.CYAN, CornerRadii.EMPTY, Insets.EMPTY)));
+                        label = new Label("Wooded");
                         break;
                     case 'O':
                         sp.setBackground(new Background(new BackgroundFill(Color.YELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
+                        label = new Label("Overgrown");
                         break;
                     case 'S':
                         sp.setBackground(new Background(new BackgroundFill(Color.LIGHTCORAL, CornerRadii.EMPTY, Insets.EMPTY)));
+                        label = new Label("Steep");
+                        break;
+                    default:
+                        label = new Label("N/A");
                         break;
                 }
                 sp.getChildren().add(label);
